@@ -1,0 +1,31 @@
+env:
+  browser: true
+  commonjs: true
+  es6: true
+extends:
+  - 'eslint:recommended'
+  - 'plugin:@typescript-eslint/eslint-recommended'
+  - 'plugin:@typescript-eslint/recommended'
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 11
+plugins:
+  - '@typescript-eslint/eslint-plugin'
+rules: {
+  "no-unused-expressions": 0,
+  "no-unused-vars": 0,
+  "no-console": 0,
+  "react/no-danger": 0,
+  "react/no-did-mount-set-state": 0,
+  "max-len": ["error", { "code": 150 }],
+  "@typescript-eslint/no-require-imports": 0,
+  "@typescript-eslint/no-unused-vars": 2,
+  "semi": ['error','always'],
+  "@typescript-eslint/explicit-module-boundary-types": 0,
+  "@typescript-eslint/no-explicit-any": 0,
+}
