@@ -150,3 +150,30 @@ export function zeroFormat(num: string | number): string {
   if (typeof num === 'string') { num = parseFloat(num); }
   return num > 9 ? String(num) : `0${String(num)}`;
 }
+
+/**
+ * 设置缓存
+ * @param key 
+ * @param value 
+ */
+export const setStorage = (key : string, value : string | object) => {
+  if (typeof value === 'object') {
+    localStorage.setItem(key, JSON.stringify(value));
+    return;
+  }
+  localStorage.setItem(key, value);
+};
+
+// 获取缓存
+export const getStorage = (key : string) => {
+  try {
+    const value = localStorage.getItem(key);
+    if (value && /^{/.test(value)) {
+      return JSON.parse(value);
+    }
+    return value;
+  } catch (e) {
+    console.warn(`getStorage [${key}] error`, e);
+  }
+  return null;
+};
