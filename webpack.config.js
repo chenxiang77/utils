@@ -1,3 +1,4 @@
+'use strict';
 const path = require('path');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
@@ -14,7 +15,27 @@ module.exports = {
     rules: [
       {
         test: /\.js|.tsx?$/,
-        use: ['ts-loader'],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              "plugins": [
+                [
+                  "@babel/plugin-transform-runtime",
+                  {
+                    "absoluteRuntime": false,
+                    "corejs": 2,
+                    "helpers": true,
+                    "regenerator": true,
+                    "useESModules": false,
+                    "version": "7.0.0-beta.0"
+                  }
+                ]
+              ]
+            },
+          }, 
+          'ts-loader'
+        ],
         exclude: /node_modules/, 
       },
     ]
